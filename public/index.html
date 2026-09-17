@@ -7,21 +7,23 @@
 <title>港澳 5 天 · 行程手册</title>
 <style>
 :root{
-  --bg:#f4f6fa; --bg2:#ffffff; --card:#ffffff; --ink:#16202e; --ink2:#5b6b80;
+  --bg:#f4f6fa; --bg2:#ffffff; --bg3:#f1f5f9; --card:#ffffff; --card2:#f8fafc; --ink:#16202e; --ink2:#5b6b80; --ink3:#cbd5e1;
   --line:#e2e8f0; --line2:#eef2f7; --shadow:0 1px 2px rgba(16,32,56,.06),0 8px 24px rgba(16,32,56,.06);
   --accent:#1f6feb; --accent-soft:#e8f0ff;
   --d1:#e5484d; --d2:#0d9488; --d3:#7c3aed; --d4:#f59e0b; --d5:#0284c7;
   --warn-bg:#fff7ed; --warn-line:#fdba74; --warn-ink:#9a3412;
   --lock-bg:#eef6ff; --lock-line:#93c5fd; --lock-ink:#1e40af;
+  --good-bg:#f0fdf4; --good-line:#4ade80; --good-ink:#166534;
   --radius:16px; --radius-sm:11px;
 }
 html[data-theme="dark"]{
-  --bg:#0b1220; --bg2:#0f172a; --card:#131e33; --ink:#e8eef9; --ink2:#93a4bd;
+  --bg:#0b1220; --bg2:#0f172a; --bg3:#15203a; --card:#131e33; --card2:#1a2740; --ink:#e8eef9; --ink2:#93a4bd; --ink3:#3b4d6a;
   --line:#243450; --line2:#1b2740; --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px rgba(0,0,0,.35);
   --accent:#5b9dff; --accent-soft:#16233c;
   --d1:#ff6b6f; --d2:#2dd4bf; --d3:#a78bfa; --d4:#fbbf24; --d5:#38bdf8;
   --warn-bg:#2a1d10; --warn-line:#8a5a1f; --warn-ink:#fcd9a8;
   --lock-bg:#122241; --lock-line:#2f5590; --lock-ink:#a9c9ff;
+  --good-bg:#0e2a1c; --good-line:#22c55e; --good-ink:#a7f3d0;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
@@ -102,6 +104,30 @@ svg.map{display:block;width:100%;height:auto;touch-action:pan-y}
 .row .ct p{margin:3px 0 0;font-size:12.5px;color:var(--ink2)}
 .row .ct .note{margin-top:5px;font-size:12px;padding:6px 9px;border-radius:8px;background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn-ink)}
 .row .ct .note.lock{background:var(--lock-bg);border-color:var(--lock-line);color:var(--lock-ink)}
+
+/* 美食嵌入块 */
+.row .ct .eat{margin-top:6px;padding:7px 10px;border-radius:8px;background:var(--good-bg);border:1px solid var(--good-line);font-size:12px;color:var(--ink);line-height:1.55;display:flex;gap:7px;align-items:flex-start}
+.row .ct .eat .eatic{flex:0 0 auto;font-size:14px;line-height:1.4}
+.row .ct .eat .eatct{flex:1 1 auto;display:flex;flex-direction:column;gap:2px}
+.row .ct .eat .eatct b{font-size:12.5px;font-weight:650;color:var(--ink)}
+.row .ct .eat .eataddr{font-size:11.5px;color:var(--ink2)}
+.row .ct .eat .eath{font-size:11.5px;color:var(--ink2);margin-top:2px}
+.row .ct .eat .nav{margin-top:4px;font-size:11.5px}
+
+/* 美食清单卡片 */
+.food{margin-top:10px;padding:10px 12px;border-radius:10px;background:var(--card2);border:1px solid var(--line);border-left:3px solid var(--ink3)}
+.food.ftag-on{border-left-color:var(--good-line)}
+.food.ftag-off{border-left-color:var(--ink3);opacity:.95}
+.foodh{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:5px}
+.ftag{font-size:10.5px;font-weight:750;padding:2px 7px;border-radius:6px;letter-spacing:.3px}
+.ftag-on{background:var(--good-bg);color:var(--good-line);border:1px solid var(--good-line)}
+.ftag-off{background:var(--bg3);color:var(--ink2);border:1px solid var(--line)}
+.food .fn{font-size:13.5px;font-weight:650;color:var(--ink);margin-right:2px}
+.food .farea{font-size:11.5px;color:var(--ink2)}
+.food .fwhen{font-size:11px;color:var(--accent);margin-left:auto;font-weight:600}
+.foodb{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--ink2);line-height:1.55}
+.foodb .faddr{font-weight:600;color:var(--ink)}
+.foodb .nav{margin-top:5px;align-self:flex-start;font-size:11.5px}
 .nav{display:inline-flex;align-items:center;gap:3px;font-size:11.5px;font-weight:650;color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;margin-top:3px}
 .nav:hover{border-bottom-color:var(--accent)}
 .mbtn{margin-top:9px;display:inline-flex;align-items:center;gap:5px;font:inherit;font-size:12.5px;font-weight:650;
@@ -290,6 +316,19 @@ footer{max-width:760px;margin:26px auto 0;padding:0 14px 26px;font-size:11.5px;c
     </div>
   </section>
 
+  <!-- ============ 5.5 美食清单 ============ -->
+  <section>
+    <div class="sec-head"><h2>美食清单</h2><span class="n">12 家 · 已嵌入行程的标「已嵌入」</span></div>
+    <div class="card" id="foods"></div>
+    <div class="card" style="margin-top:10px">
+      <div class="tfoot" style="padding-top:0">
+        12 家里有 4 家已直接落进逐日行程（诚记 / 一兰拉面 / 笼太子 / 华嫂冰室），另外 3 家挂在条件分支上（Fineprint、知延屋在 D3 雨天方案，沙嗲王在自由夜备选）。
+        剩下的按标注分为「今天吃不到」（两草，周一休）和「清单收藏」（旺角 / 油塘几家，本次动线没经过）。
+        营业时间会变，出发前建议用 OpenRice 或 Google 再确认一次。
+      </div>
+    </div>
+  </section>
+
   <!-- ============ 6. 实用贴士 ============ -->
   <section>
     <div class="sec-head"><h2>实用贴士</h2></div>
@@ -429,7 +468,9 @@ var DAYS = [
        nav:"Central Pier Hong Kong"},
       {tm:"晚间",name:"返回香港九龙酒店",
        desc:"跟团行程结束后送回酒店。尖沙咀弥敦道 19-21 号。",
-       nav:"The Kowloon Hotel Hong Kong"}
+       nav:"The Kowloon Hotel Hong Kong",
+       eat:{n:"华嫂冰室（尖沙咀）",a:"尖沙咀棉登径 8 号,离酒店步行 5 分钟",
+            q:"Wing Saw Noodle Shop Tsim Sha Tsui",h:"晚饭如太晚可在华嫂打包一份猪扒番茄汤通粉当宵夜;现金或八达通"}}
     ],
     foot:"本日景点顺序以导游安排为准。通知书列了故宫、山顶、赤柱、水上的士四处跨区点位，实际停留时长会被压缩，页面上不标精确钟点。"
   },
@@ -453,14 +494,18 @@ var DAYS = [
       {tm:"约 09:00",name:"坚尼地城 · 新海旁街海堤",
        desc:"港岛线西端终点站，C 出口步行几分钟到海堤。「路的尽头是海」的机位就在这里。顺路在 %Arabica（吉席街 Jin Court）买杯咖啡坐海边，再沿卑路乍湾海滨公园散步。",
        note:"今天控制在 1 小时左右，10:30 出发去铜锣湾赶 MLB 开仓开门。周一上午本地人上班、游客少，拍照最清净。海堤朝西黄昏最美，但今晚 20:00 有幻彩咏香江，赶不回来，所以上午去。西环码头（Instagram Pier）已围封多年，别按旧攻略专程去。",
-       nav:"Kennedy Town Praya Hong Kong"},
+       nav:"Kennedy Town Praya Hong Kong",
+       eat:{n:"诚记（士美菲路熟食中心）",a:"坚尼地城士美菲路 12K 市政大厦 2 楼，地铁 B 出口步行 1 分钟",
+            q:"Shing Kee Sai Ying Pun Kennedy Town",h:"周一 06:30–17:00 营业，今天是周一,赶得上;招牌沙嗲牛肉面 / 避风塘炒饭 / 西多士;熟食中心环境,纸巾自带"}},
       {tm:"11:00",hard:1,name:"时代广场一座 16 楼 · MLB 开仓",
        desc:"韩国潮牌 MLB 限时开仓，棒球帽 HK$100 起、渔夫帽 / 冷帽 HK$150 起、鞋款 HK$100 起；满 3 件折上 9 折、满 5 件 85 折。坚尼地城坐港岛线直达铜锣湾约 15 分钟，时代广场在铜锣湾站 A 出口上方，乘电梯到一座 16 楼。",
        note:"开仓只办到今天（营业 11:00–21:00），热门帽款（LA 道奇、NY 洋基）售完即止——开门就去，别放到傍晚。付款以现场为准，备好现金或八达通。",
        nav:"Times Square Hong Kong"},
       {tm:"中午",name:"铜锣湾 · 午餐",
        desc:"时代广场、希慎广场一带解决午饭。全港最大的 Apple Store 在希慎广场，顺路。",
-       nav:"Causeway Bay Hong Kong"},
+       nav:"Causeway Bay Hong Kong",
+       eat:{n:"一兰拉面（铜锣湾）",a:"铜锣湾轩尼诗道 499 号附近,从时代广场步行 5–8 分钟",
+            q:"Ichiran Ramen Causeway Bay Hong Kong",h:"24 小时营业,今天全天可入;招牌豚骨原汤+加辣;HK$51–100/人;点单机自助,不会粤语也能搞定"}},
       {tm:"午后",name:"太平山顶缆车总站（中环花园道）",
        desc:"铜锣湾坐港岛线 2 站回中环，从遮打花园步行约 10 分钟到缆车总站。自费补一张往返票，慢慢上山顶。",
        note:"这是团费以外自费项目。周一非高峰，缆车排队比周末短。",
@@ -473,11 +518,13 @@ var DAYS = [
        desc:"缆车下山 → 中环 → 地铁过海到尖沙咀，全程约 45 分钟。早点到海滨占位。",
        nav:"Tsim Sha Tsui East Promenade"},
       {tm:"20:00",hard:1,name:"尖沙咀海滨 · 幻彩咏香江",
-       desc:"每晚 20:00 开始的维港灯光音乐汇演，尖沙咀海滨长廊是主要观赏点。",
+       desc:"每晚 20:00 开始的维港灯光音乐汇演，尖沙咀海滨长廊是主要观赏点。看完散步回酒店只需几分钟。",
        note:"灯光秀如遇恶劣天气或特别安排可能取消，出发当天可留意。尖沙咀海滨离酒店步行可达。",
-       nav:"Tsim Sha Tsui East Promenade"}
+       nav:"Tsim Sha Tsui East Promenade",
+       eat:{n:"华嫂冰室（尖沙咀）· 夜宵",a:"尖沙咀棉登径 8 号 地舖，港铁尖东站 N3 出口步行 2 分钟",
+            q:"Wing Saw Noodle Shop Tsim Sha Tsui",h:"离九龙酒店步行 5 分钟，回酒店路上打包一份菠萝油 / 猪扒鸡翼番茄汤通粉当宵夜正好；棉登径是尖沙咀小巷，深夜也亮灯；现金或八达通"}}
     ],
-    foot:"今天全天自由，没有任何团队安排，用车与导游都不含。全天两个硬点：11:00 MLB 开仓开门（今天最后一天）、20:00 幻彩咏香江。坚尼地城压缩到 1 小时，山顶留整个下午，动线不绕路。"
+    foot:"今天全天自由，没有任何团队安排，用车与导游都不含。全天两个硬点：11:00 MLB 开仓开门（今天最后一天）、20:00 幻彩咏香江。坚尼地城压缩到 1 小时，山顶留整个下午，动线不绕路。已插入两家顺路美食：坚尼地城 1 小时窗口里的诚记，和时代广场隔壁的一兰拉面。"
   },
   {
     n:3, date:"2026-09-22", color:"var(--d3)",
@@ -516,7 +563,9 @@ var DAYS = [
        nav:"Big Wave Bay Hong Kong"},
       {tm:"傍晚",name:"回柴湾 → 返回尖沙咀",
        desc:"大浪湾道接歌连臣角道上坡回到柴湾站，港岛线原路返回酒店。",
-       nav:"Chai Wan Station Hong Kong"}
+       nav:"Chai Wan Station Hong Kong",
+       eat:{n:"笼太子点心专门店（筲箕湾）",a:"筲箕湾东大街 14 号地舖,地铁 B2 出口步行 2 分钟,从柴湾站坐 1 站港岛线过去",
+            q:"Prince Dragon Dim Sum Shau Kei Wan",h:"今天 9/22 周二正常 09:00–22:00 营业;新派粤式点心;现金或八达通;适合徒步后的午餐/下午茶"}}
     ],
     foot:"今天全天自由。路线单向以下坡为主，好走，但终点大浪湾是最低点——回程上坡预留 45 分钟以上。9 月太阳仍猛，防晒和饮水放第一位，水和零食在柴湾站买好。体力不够就从大浪湾打车回柴湾，约 10 分钟车程。",
     rain:{
@@ -588,7 +637,9 @@ var DAYS = [
        nav:"Artyzen Grand Lapa Macau"},
       {tm:"20:00 后",name:"自由夜 · 议事亭前地 / 新马路",
        desc:"从雅辰酒店步行或打车约 10–15 分钟到澳门半岛老城中心。夜里沿途建筑灯饰很好拍。",
-       nav:"Senado Square Macau"}
+       nav:"Senado Square Macau",
+       eat:{n:"沙嗲王（油麻地/旺角/铜锣湾 多店）",a:"你今天在澳门,沙嗲王在港澳都有分店;回香港日可用",
+            q:"Satay King Hong Kong",h:"澳门的沙嗲王不在你今晚路线上,作为清单展示;香港 10 分店覆盖油尖旺 + 港岛"}},
     ],
     foot:"白天跟团，晚上自由安排。澳门的士数量少、高峰较难打到，夜里建议用步行或酒店打车服务。"
   },
@@ -692,6 +743,58 @@ var TODO = [
    h:"香港九龙酒店在尖沙咀弥敦道 19–21 号，澳门雅辰酒店在友谊大马路 956–1110 号。迷路时给司机看地址最快。"},
   {lvl:"any", lvlt:"随时", t:"确认随身液体符合规定",
    h:"单件容器不超过 100 毫升，总量不超过 1 升，装在可重复封口的透明袋里，每名旅客一个。"}
+];
+
+/* 美食清单 */
+var FOODS = [
+  {tag:"已嵌入",n:"华嫂冰室",area:"尖沙咀",q:"Wing Saw Noodle Shop Tsim Sha Tsui",
+   addr:"尖沙咀棉登径 8 号地舖",
+   h:"地铁尖东站 N3 出口步行 2 分钟;周一至日 07:00–23:00 (各店不一,建议先确认);招牌菠萝油 / 猪扒番茄汤通粉;现金或八达通;离九龙酒店步行 5 分钟,D1 回酒店晚 D2 晚上看完幻彩咏香江都顺路",
+   when:"D1 晚 / D2 夜宵"},
+  {tag:"已嵌入",n:"诚记",area:"坚尼地城",q:"Shing Kee Sai Ying Pun Kennedy Town",
+   addr:"坚尼地城士美菲路 12K 号 士美菲路市政大厦 2 楼熟食中心",
+   h:"地铁坚尼地城站 B 出口步行 1 分钟;周一 06:30–17:00(今天 9/21 周一,赶得上);招牌沙嗲牛肉面 / 避风塘炒饭 / 厚切西多士;熟食中心环境纸巾自带;HK$50 以下",
+   when:"D2 早午餐"},
+  {tag:"已嵌入",n:"一兰拉面",area:"铜锣湾",q:"Ichiran Ramen Causeway Bay Hong Kong",
+   addr:"铜锣湾轩尼诗道 499 号(时代广场隔壁)",
+   h:"24 小时营业(部分分店);铜锣湾从时代广场步行 5–8 分钟;招牌豚骨原汤 + 加辣;HK$51–100/人;点单机自助,不会粤语也能搞定",
+   when:"D2 午餐"},
+  {tag:"已嵌入",n:"笼太子点心专门店",area:"筲箕湾",q:"Prince Dragon Dim Sum Shau Kei Wan",
+   addr:"筲箕湾东大街 14 号地舖",
+   h:"港铁筲箕湾站 B2 出口步行 2 分钟(从柴湾站港岛线坐 1 站);周一至日 09:00–22:00(9/22 周二正常);新派粤式点心;现金或八达通;适合徒步后的午餐/下午茶",
+   when:"D3 徒步后"},
+  {tag:"已嵌入",n:"沙嗲王",area:"香港多店",q:"Satay King Hong Kong",
+   addr:"油麻地现时点 / 旺角胡社生行 / 铜锣湾黄金广场 等 10 分店",
+   h:"港澳沙嗲王是分开的,澳门自由夜不在你今晚路线上;作为清单备选,回港后或下次再用;沙嗲牛肉 + 串烧 + 炒粉",
+   when:"清单备选"},
+  {tag:"已嵌入",n:"Fineprint",area:"中环 苏豪",q:"Fineprint Soho Hong Kong",
+   addr:"中环苏豪卑利街 38 号地舖",
+   h:"咖啡+ brunch;周二至日(周一休);D3 雨天方案 A/B 走中环时可顺路",
+   when:"D3 雨天备选"},
+  {tag:"已嵌入",n:"知延屋",area:"中环 / 北角",q:"Chi Yan House Hong Kong",
+   addr:"中环歌赋街 12 号地舖 / 北角七姊妹道 100-104 B3",
+   h:"11:30–21:30;粤式家常 + 招牌炸子鸡;D3 雨天方案 B 中环线可顺路",
+   when:"D3 雨天备选"},
+  {tag:"清单",n:"两草",area:"西营盘",q:"Liangcao Sai Ying Pun",
+   addr:"西营盘高街 64 号地舖",
+   h:"⚠️ 周一休,今天 9/21 周一不开;周二–五 12:00–15:30 / 17:30–21:00;D2 坚尼地城动线在港岛西,这家在西营盘,离得很近但今天吃不到",
+   when:"今天吃不到"},
+  {tag:"清单",n:"捌加廿陸",area:"旺角",q:"Ba Ka Er Shi Liu Mong Kok",
+   addr:"旺角窝打老道 31-39 翠园大厦一期地下 33A",
+   h:"粥面店;24 小时营业;离你旺角附近路线顺;这次行程没安排到旺角,作清单收藏",
+   when:"清单收藏"},
+  {tag:"清单",n:"通达食店",area:"旺角",q:"Tung Tat Yat Gaan Mong Kok",
+   addr:"旺角花园街 172 号地舖",
+   h:"港式粉面;街坊店;现金;这次行程没安排到旺角,作清单收藏",
+   when:"清单收藏"},
+  {tag:"清单",n:"旺记冰室",area:"旺角 / 油塘",q:"Wong Kee Cafe Mong Kok",
+   addr:"旺角通菜街 2Q 鸿辉大厦 B 座 / 油塘高超道 38 大本型 3 楼",
+   h:"⚠️ 原「旺记」部分店铺已结业,以现址为准;茶餐 + 冰室常见款式;这次行程没经过",
+   when:"清单收藏"},
+  {tag:"清单",n:"Jollibee (快乐蜂)",area:"中环 / 全港 18 分店",q:"Jollibee Central Hong Kong",
+   addr:"中环干诺道中 13 号欧陆贸易中心地下",
+   h:"08:00–21:00;菲律宾连锁炸鸡+意面+米饭;这次行程可作 D5 离酒店前或机动",
+   when:"机动备选"}
 ];
 
 /* 贴士 */
@@ -922,6 +1025,14 @@ function renderDays(){
       h += "<b>" + r.name + "</b>";
       h += "<p>" + r.desc + "</p>";
       if(r.note) h += '<div class="note' + (r.hard ? " lock" : "") + '">' + r.note + "</div>";
+      if(r.eat){
+        h += '<div class="eat"><span class="eatic">🍴</span><span class="eatct">' +
+             '<b>' + r.eat.n + '</b>' +
+             '<span class="eataddr">📍 ' + r.eat.a + '</span>' +
+             '<span class="eath">' + r.eat.h + '</span>' +
+             '<a class="nav" href="' + navURL(r.eat.q) + '" target="_blank" rel="noopener">导航 →</a>' +
+             "</span></div>";
+      }
       if(r.nav) h += '<a class="nav" href="' + navURL(r.nav) + '" target="_blank" rel="noopener">导航 →</a>';
       h += "</div></div>";
     });
@@ -1031,6 +1142,26 @@ function renderTips(){
   }).join("");
 }
 
+/* 美食清单渲染 */
+function renderFoods(){
+  document.getElementById("foods").innerHTML = FOODS.map(function(f){
+    var tagCls = f.tag === "已嵌入" ? "ftag-on" : "ftag-off";
+    return '<div class="food ' + tagCls + '">' +
+           '<div class="foodh">' +
+             '<span class="ftag ' + tagCls + '">' + f.tag + '</span>' +
+             '<b class="fn">' + f.n + '</b>' +
+             '<span class="farea">' + f.area + '</span>' +
+             '<span class="fwhen">📅 ' + f.when + '</span>' +
+           '</div>' +
+           '<div class="foodb">' +
+             '<span class="faddr">📍 ' + f.addr + '</span>' +
+             '<span class="fdesc">' + f.h + '</span>' +
+             '<a class="nav" href="' + navURL(f.q) + '" target="_blank" rel="noopener">导航 →</a>' +
+           '</div>' +
+         '</div>';
+  }).join("");
+}
+
 /* ==========================================================
    主题：按当地时间自动切换，可手动覆盖
    ========================================================== */
@@ -1060,6 +1191,7 @@ function applyTheme(force){
   renderDays();
   renderTodo();
   renderTips();
+  renderFoods();
 
   var saved = null;
   try{ saved = localStorage.getItem("trip.theme"); }catch(e){}
