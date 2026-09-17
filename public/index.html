@@ -112,6 +112,12 @@ svg.map{display:block;width:100%;height:auto;touch-action:pan-y}
 .daymap svg{display:block;width:100%;height:auto}
 .maplink{margin:0;padding:9px 11px;font-size:12px}
 .maplink a{color:var(--accent);font-weight:650;text-decoration:none}
+.rain{margin-top:12px;border:1px solid var(--lock-line);background:var(--lock-bg);border-radius:var(--radius-sm);padding:11px 13px}
+.rain .rhead{font-size:12.5px;font-weight:750;color:var(--lock-ink);letter-spacing:.4px}
+.rain .rnote{margin:5px 0 0;font-size:12px;color:var(--lock-ink);opacity:.9}
+.rain .rplan{padding:8px 0 2px;border-top:1px dashed var(--lock-line);margin-top:8px}
+.rain .rplan b{display:block;font-size:13px;font-weight:650;color:var(--ink)}
+.rain .rplan p{margin:2px 0 0;font-size:12px;color:var(--ink2)}
 
 /* ---------- 预订 ---------- */
 .bk{padding:14px 15px;border-bottom:1px solid var(--line2)}
@@ -512,7 +518,22 @@ var DAYS = [
        desc:"大浪湾道接歌连臣角道上坡回到柴湾站，港岛线原路返回酒店。",
        nav:"Chai Wan Station Hong Kong"}
     ],
-    foot:"今天全天自由。路线单向以下坡为主，好走，但终点大浪湾是最低点——回程上坡预留 45 分钟以上。9 月太阳仍猛，防晒和饮水放第一位，水和零食在柴湾站买好。体力不够就从大浪湾打车回柴湾，约 10 分钟车程。"
+    foot:"今天全天自由。路线单向以下坡为主，好走，但终点大浪湾是最低点——回程上坡预留 45 分钟以上。9 月太阳仍猛，防晒和饮水放第一位，水和零食在柴湾站买好。体力不够就从大浪湾打车回柴湾，约 10 分钟车程。",
+    rain:{
+      t:"雨天备选（9/22 周二）",
+      note:"今天恰逢周二：香港故宫、历史博物馆、太空馆、文化博物馆全部闭馆，别按直觉跑空。以下三个都周二开门。黄雨 / 红雨照常开放；八号风球或黑雨连馆都关，直接改商场或等预警解除。",
+      plans:[
+        {n:"香港艺术馆 + 海港城（免费 · 就近）",
+         d:"艺术馆常设展免费，就在星光大道旁，酒店步行 10 分钟。出来直接钻海港城 / K11 MUSEA，全程室内，几乎不用淋雨。开放 10:00–18:00。",
+         nav:"Hong Kong Museum of Art"},
+        {n:"M+ 博物馆（西九 · 付费）",
+         d:"周二正常开放 10:00–18:00，标准票 HK$120，33 个展厅 + 天台花园看维港，能待大半天。尖沙咀坐 1 站到柯士甸站步行前往。周一休馆，今天没问题。",
+         nav:"M Plus Museum Hong Kong"},
+        {n:"大馆 + 中环商场（免费 · 跨海）",
+         d:"荷李活道百年警署建筑群，免费，08:00–23:00 几乎全年无休；连着 IFC、置地广场，纯室内动线。",
+         nav:"Tai Kwun Hong Kong"}
+      ]
+    }
   },
   {
     n:4, date:"2026-09-23", color:"var(--d4)",
@@ -905,6 +926,16 @@ function renderDays(){
       h += "</div></div>";
     });
 
+    if(d.rain){
+      h += '<div class="rain"><div class="rhead">🌧 ' + d.rain.t + "</div>";
+      if(d.rain.note) h += '<p class="rnote">' + d.rain.note + "</p>";
+      d.rain.plans.forEach(function(pl){
+        h += '<div class="rplan"><b>' + pl.n + "</b><p>" + pl.d + "</p>";
+        if(pl.nav) h += '<a class="nav" href="' + navURL(pl.nav) + '" target="_blank" rel="noopener">导航 →</a>';
+        h += "</div>";
+      });
+      h += "</div>";
+    }
     h += '<p class="row" style="display:block;font-size:11.5px;color:var(--ink2);border-bottom:0;padding-top:10px">' + d.foot + "</p>";
     h += "</div></div>";
   });
