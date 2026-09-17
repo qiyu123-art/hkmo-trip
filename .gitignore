@@ -1,0 +1,7 @@
+# Wrangler 本地构建产物
+.wrangler/
+node_modules/
+
+# 系统文件
+.DS_Store
+Thumbs.db

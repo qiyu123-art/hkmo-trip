@@ -1,0 +1,8 @@
+name = "hkmo-trip"
+main = "src/worker.js"
+compatibility_date = "2024-09-01"
+
+# 静态资源托管：public 目录下的 index.html 即为站点首页
+[assets]
+directory = "./public"
+binding = "ASSETS"
