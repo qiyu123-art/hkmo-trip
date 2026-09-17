@@ -218,7 +218,7 @@ footer{max-width:760px;margin:26px auto 0;padding:0 14px 26px;font-size:11.5px;c
         <path d="M50 192 C 68 172, 98 172, 116 190 C 132 206, 132 236, 117 254
                  C 101 274, 68 276, 52 258 C 38 242, 38 208, 50 192 Z"
               fill="url(#hatchL)" stroke="currentColor" stroke-width="1.5" opacity="0.8"/>
-        <text x="122" y="260" font-size="8.8" opacity="0.5" text-anchor="middle">香港岛</text>
+        <text x="76" y="222" font-size="8.8" opacity="0.5" text-anchor="middle">香港岛</text>
 
         <!-- ② 九龙半岛（北） -->
         <path d="M74 92 C 102 76, 142 82, 160 102 C 178 122, 172 150, 152 164
@@ -250,10 +250,6 @@ footer{max-width:760px;margin:26px auto 0;padding:0 14px 26px;font-size:11.5px;c
               fill="url(#hatchL)" stroke="currentColor" stroke-width="1.5" opacity="0.8"/>
         <text x="314" y="304" font-size="8.8" opacity="0.5" text-anchor="middle">氹仔</text>
 
-        <!-- ⑦ 南丫岛（示意小岛） -->
-        <path d="M40 296 C 52 288, 70 290, 76 302 C 82 314, 70 328, 54 328
-                 C 40 328, 32 314, 34 304 C 35 300, 37 298, 40 296 Z"
-              fill="url(#hatchL)" stroke="currentColor" stroke-width="1.4" opacity="0.65"/>
         <!-- 大桥 -->
         <path d="M230 348 C 252 330, 274 300, 296 268" class="hand" stroke="var(--d4)" stroke-width="3" id="bridgeLine"/>
         <g id="bridgeTicks"></g>
@@ -479,36 +475,44 @@ var DAYS = [
   },
   {
     n:3, date:"2026-09-22", color:"var(--d3)",
-    title:"自由活动 · 南丫岛一日",
-    sub:"中环 4 号码头往返 · 需走山路",
+    title:"自由活动 · 小西湾山海徒步",
+    sub:"港岛东海岸线 · 单向下坡为主",
     type:"自由活动",
-    tags:[{t:"全天自由",c:"any"},{t:"渡轮无需预约",c:"any"},{t:"需徒步",c:"self"}],
-    stops:[{n:"中环4码头",q:"Central Pier 4 Hong Kong"},
-           {n:"榕树湾",q:"Yung Shue Wan Lamma Island"},
-           {n:"索罟湾",q:"Sok Kwu Wan Lamma Island"},
-           {n:"中环码头",q:"Central Pier 4 Hong Kong"},
-           {n:"九龙酒店",q:"The Kowloon Hotel Hong Kong"}],
+    tags:[{t:"全天自由",c:"any"},{t:"徒步约 3 小时",c:"self"},{t:"沿途补给极少",c:"self"}],
+    stops:[{n:"九龙酒店",q:"The Kowloon Hotel Hong Kong"},
+           {n:"柴湾站",q:"Chai Wan Station Hong Kong"},
+           {n:"小西湾海滨",q:"Siu Sai Wan Promenade"},
+           {n:"砵甸乍山",q:"Pottinger Peak Hong Kong"},
+           {n:"大浪湾",q:"Big Wave Bay Hong Kong"},
+           {n:"回柴湾",q:"Chai Wan Station Hong Kong"}],
     rows:[
-      {tm:"上午",name:"中环 4 号码头",
-       desc:"港铁中环站 A 出口，经行人天桥走到中环码头。南丫岛航线在 4 号码头，往榕树湾。",
-       note:"渡轮不能用八达通以外的电子票替代，八达通或现金均可，无需提前预约，即到即走。",
-       nav:"Central Pier 4 Hong Kong"},
-      {tm:"上午",name:"榕树湾（南丫岛）",
-       desc:"南丫岛北端，渡轮约 25–30 分钟。岛上无汽车，只有单车和行人。",
-       nav:"Yung Shue Wan Lamma Island"},
-      {tm:"中午",name:"家乐径徒步 · 榕树湾 → 索罟湾",
-       desc:"全长约 5–6 公里，步行约 2–2.5 小时，途经洪圣爷湾泳滩、大风车。",
-       note:"全程为山路与石阶，有上有下。9 月香港仍热，务必带水（每人 1.5L 起）、防晒、帽子。穿运动鞋，别穿凉拖。",
-       nav:"Lamma Island Family Walk"},
-      {tm:"下午",name:"索罟湾",
-       desc:"南丫岛南端渔村，海鲜酒家集中。</br>",
-       nav:"Sok Kwu Wan Lamma Island"},
-      {tm:"傍晚",name:"渡轮返中环 → 回酒店",
-       desc:"索罟湾有直航中环的渡轮，班次比榕树湾少，务必先看清末班时间再进村吃饭。",
-       note:"南丫岛往中环的末班船通常在晚间，但以当天码头公告为准。错过末班只能包船，费用很高。",
-       nav:"Central Pier 4 Hong Kong"}
+      {tm:"上午",name:"九龙酒店出发",
+       desc:"港铁尖沙咀 → 金钟转港岛线到柴湾站，约 40 分钟。今天走港岛最东端的小众海岸线，全程人少清净。",
+       note:"全程徒步约 3 小时，终点大浪湾是最低点，回程还要上坡 45 分钟左右。穿运动鞋，带足水。",
+       nav:"The Kowloon Hotel Hong Kong"},
+      {tm:"约 09:30",name:"柴湾站 C 口 → 47M 绿色小巴",
+       desc:"C 口出站左后方换乘 47M 绿色小巴，坐到终点站下车，就是小西湾海滨花园，徒步起点。",
+       note:"小巴没有时刻表，八达通或现金均可。柴湾站附近便利店买齐水和零食——沿途补给极少。",
+       nav:"Chai Wan Station Hong Kong"},
+      {tm:"约 10:00",name:"小西湾海滨花园",
+       desc:"蓝色栏杆海滨长廊，日系清新机位，徒步从这里起步。",
+       nav:"Siu Sai Wan Promenade"},
+      {tm:"上午",name:"龙跃径 · 主要爬升段",
+       desc:"沿海岸步道上山，沿途多个休憩平台，可完整俯瞰鲤鱼门与将军澳方向的山海全景。",
+       note:"这是全程主要的爬升段，慢点走不丢人，平台上多停。",
+       nav:"Cape Collinson Road Hong Kong"},
+      {tm:"中午",name:"砵甸乍山观景台",
+       desc:"山顶 360° 山海全景，东望蓝塘海峡，南俯大浪湾。之后一路下坡去海边。",
+       nav:"Pottinger Peak Hong Kong"},
+      {tm:"午后",name:"大浪湾沙滩",
+       desc:"徒步终点。澄澈海水 + 干净沙滩，游客极少，适合静坐发呆、吹海风、拍暮色氛围片。",
+       note:"这里就是路线最低点，回程二选一：走大浪湾道上坡 40–50 分钟回柴湾，或打车（叫车不便，可能要走一段才有车）。体力留余量。",
+       nav:"Big Wave Bay Hong Kong"},
+      {tm:"傍晚",name:"回柴湾 → 返回尖沙咀",
+       desc:"大浪湾道接歌连臣角道上坡回到柴湾站，港岛线原路返回酒店。",
+       nav:"Chai Wan Station Hong Kong"}
     ],
-    foot:"今天全天自由。渡轮即到即走，不需要预约；但务必先确认末班船时间。"
+    foot:"今天全天自由。路线单向以下坡为主，好走，但终点大浪湾是最低点——回程上坡预留 45 分钟以上。9 月太阳仍猛，防晒和饮水放第一位，水和零食在柴湾站买好。体力不够就从大浪湾打车回柴湾，约 10 分钟车程。"
   },
   {
     n:4, date:"2026-09-23", color:"var(--d4)",
@@ -657,8 +661,8 @@ var TODO = [
    h:"团费只含单程上山。周末及公众假期票价更高，现场排队窗口很长，建议 Klook / 携程提前买。"},
   {lvl:"soon", lvlt:"尽早", t:"下载离线地图与翻译 App，备好八达通",
    h:"9/21、9/22 两天全天自由，主要靠港铁、渡轮和步行。八达通可在地铁站客服中心办。"},
-  {lvl:"soon", lvlt:"尽早", t:"备好南丫岛徒步装备：运动鞋、防晒、饮水",
-   h:"9/22 要走进约 5–6 公里的家乐径山路。9 月香港仍热，带水 1.5L 以上，穿透气运动鞋。"},
+  {lvl:"soon", lvlt:"尽早", t:"备好徒步装备：运动鞋、防晒、1.5L 以上饮水",
+   h:"9/22 小西湾到大浪湾徒步约 3 小时，沿途几乎没有补给，水和零食在柴湾站买好。回程还要上坡 45 分钟，体力留余量。"},
   {lvl:"soon", lvlt:"尽早", t:"给手机开通漫游，或提前买港澳流量卡",
    h:"香港、澳门通话与上网需单独开通，港澳通行证入境后信号自动切换，但需先开通漫游服务。"},
   {lvl:"any", lvlt:"随时", t:"记好领队电话与紧急联系人",
@@ -789,7 +793,8 @@ var MAP_PINS = [
   {x:112, y:200, c:"var(--d2)", t:"中环码头", q:"Central Pier 4 Hong Kong", a:"e"},
   {x:62,  y:240, c:"var(--d2)", t:"太平山",  q:"The Peak Tower Hong Kong", a:"e"},
   {x:130, y:228, c:"var(--d2)", t:"时代广场", q:"Times Square Hong Kong", a:"e"},
-  {x:56,  y:314, c:"var(--d3)", t:"南丫岛",  q:"Yung Shue Wan Lamma Island", a:"e"},
+  {x:112, y:180, c:"var(--d3)", t:"小西湾",  q:"Siu Sai Wan Promenade", a:"w"},
+  {x:112, y:262, c:"var(--d3)", t:"大浪湾",  q:"Big Wave Bay Hong Kong", a:"w"},
   {x:214, y:352, c:"var(--d4)", t:"香港口岸", q:"Hong Kong Zhuhai Macao Bridge Hong Kong Port", a:"e"},
   {x:322, y:200, c:"var(--d4)", t:"大三巴",  q:"Ruins of St. Paul's Macau", a:"e"},
   {x:300, y:238, c:"var(--d4)", t:"澳门雅辰", q:"Artyzen Grand Lapa Macau", a:"w"},
